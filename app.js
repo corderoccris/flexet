@@ -13,7 +13,7 @@ let startTimestamp = null;
 
 const startScreen = document.getElementById("startScreen");
 const startBtnScreen = document.getElementById("startBtnScreen");
-
+const endScreen = document.getElementById("endScreen");
 const appScreen = document.getElementById("appScreen");
 const sessionEl = document.getElementById("sessionInfo");
 const timerEl = document.getElementById("timer");
@@ -147,20 +147,15 @@ function stopApp() {
   releaseWakeLock();
 
   appScreen.style.display = "none";
-  startScreen.style.display = "flex";
+  endScreen.style.display = "flex";
+
+  playCompletionSound();
 
   running = false;
   time = CONFIG.intervalSegons;
   totalTime = CONFIG.totalMinuts * 60;
 
-  updateDisplay();
-  messageEl.textContent = "";
-  imageEl.src = "";
-
-  appScreen.classList.remove("stretch", "bend");
-
   startTimestamp = null;
-  sessionEl.textContent = "";
 }
 
 function updateSessionInfo() {
@@ -175,6 +170,37 @@ function updateSessionInfo() {
   const startTimeStr = start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
   sessionEl.textContent = `Inici: ${startTimeStr} · portes ${minutes} min`;
+}
+
+function playCompletionSound() {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+  function playNote(freq, start, duration) {
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    osc.frequency.value = freq;
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    gain.gain.setValueAtTime(0.001, start);
+    gain.gain.exponentialRampToValueAtTime(0.3, start + 0.01);
+    gain.gain.exponentialRampToValueAtTime(0.001, start + duration);
+
+    osc.start(start);
+    osc.stop(start + duration);
+  }
+
+  const t = ctx.currentTime;
+
+  // 🎶 tu ru ru ruuut tu ruuuut
+  playNote(523, t, 0.2);     // Do
+  playNote(659, t + 0.2, 0.2); // Mi
+  playNote(784, t + 0.4, 0.3); // Sol
+  playNote(659, t + 0.7, 0.2);
+  playNote(523, t + 0.9, 0.4);
 }
 
 // recuperar wake lock
