@@ -30,6 +30,10 @@ const imageEl = document.getElementById("image");
 const btn = document.getElementById("startBtnScreen"); // ja no fem servir el de l'HTML original
 const resetBtn = document.getElementById("resetBtn");
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js");
+}
+
 // DISPLAY
 function updateDisplay() {
   timerEl.textContent = time;

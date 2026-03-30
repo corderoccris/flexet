@@ -3,6 +3,13 @@
   "short_name": "Flexet",
   "start_url": ".",
   "display": "standalone",
-  "background_color": "#111",
-  "theme_color": "#111"
+  "background_color": "#f8bbd0",
+  "theme_color": "#f8bbd0",
+  "icons": [
+    {
+      "src": "img/icons8-knee-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    }
+  ]
 }
