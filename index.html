@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="UTF-8">
+  <title>FLEXET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#111">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- PANTALLA INICIAL -->
+  <div id="startScreen">
+    <img src="img/flexet-app.png" alt="Flexet Logo" id="startLogo"/>
+    <h1>Flexet</h1>
+    <button id="startBtnScreen">Empezar</button>
+  </div>
+
+  <!-- PANTALLA APP -->
+  <div id="appScreen">
+    <div id="message"></div>
+    <img id="image" src="" alt="" />
+    <div id="timer">30</div>
+    <div id="sessionInfo"></div>
+
+    <button id="resetBtn">Reiniciar</button>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
