@@ -1,6 +1,6 @@
 const CONFIG = {
   intervalSegons: 10,    // Durada de cada interval (per estirar/doblar)
-  totalMinuts: 0.1        // Durada total de la sessió
+  totalMinuts: 0,1        // Durada total de la sessió
 };
 
 let interval = null;
