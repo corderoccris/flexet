@@ -1,6 +1,6 @@
 const CONFIG = {
   intervalSegons: 10,    // Durada de cada interval (per estirar/doblar)
-  totalMinuts: 0.5        // Durada total de la sessió
+  totalMinuts: 0.05        // Durada total de la sessió
 };
 
 let interval = null;
@@ -10,6 +10,14 @@ let running = false;
 let isStretch = true;
 let wakeLock = null;
 let startTimestamp = null;
+let lastCatIndex = -1;
+
+const catImages = [
+  "img/Squinting_cat.jpg",
+  "img/Ginger_european_cat.jpg",
+  "img/British_Shorthair_Smiling.jpg",
+  "img/black-cat.jpg"
+];
 
 const startScreen = document.getElementById("startScreen");
 const startBtnScreen = document.getElementById("startBtnScreen");
@@ -146,6 +154,9 @@ function stopApp() {
   clearInterval(interval);
   releaseWakeLock();
 
+  const endImage = document.getElementById("endImage");
+  endImage.src = getRandomCat();
+
   appScreen.style.display = "none";
   endScreen.style.display = "flex";
 
@@ -201,6 +212,23 @@ function playCompletionSound() {
   playNote(784, t + 0.4, 0.3); // Sol
   playNote(659, t + 0.7, 0.2);
   playNote(523, t + 0.9, 0.4);
+}
+
+
+function getRandomCat() {
+  if (catImages.length === 0) return "";
+
+  let index = Math.floor(Math.random() * catImages.length);
+
+  // evitar repetició
+  if (catImages.length > 1 && index === lastCatIndex) {
+    index = (index + 1) % catImages.length;
+  }
+
+  lastCatIndex = index;
+
+  // anti-cache
+  return catImages[index] + "?v=" + Date.now();
 }
 
 // recuperar wake lock
