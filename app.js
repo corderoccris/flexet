@@ -1,6 +1,11 @@
+const CONFIG = {
+  intervalSegons: 10,    // Durada de cada interval (per estirar/doblar)
+  totalMinuts: 1        // Durada total de la sessió
+};
+
 let interval = null;
-let time = 30;
-let totalTime = 1800;
+let time = CONFIG.intervalSegons;
+let totalTime = CONFIG.totalMinuts * 60;
 let running = false;
 let isStretch = true;
 let wakeLock = null;
@@ -91,7 +96,7 @@ function tick() {
     playSound();
     vibrate();
     isStretch = !isStretch;
-    time = 30;
+    time = CONFIG.intervalSegons;
   }
 
   if (totalTime <= 0) {
@@ -113,8 +118,8 @@ startBtnScreen.onclick = async () => {
   updateSessionInfo();
 
   if (!running) {
-    time = 30;
-    totalTime = 1800;
+    time = CONFIG.intervalSegons;
+    totalTime = CONFIG.totalMinuts * 60;
     isStretch = true;
 
     await enableWakeLock();
@@ -130,9 +135,9 @@ startBtnScreen.onclick = async () => {
   }
 };
 
-// RESET (només 30s)
+// RESET
 resetBtn.onclick = () => {
-  time = 30;
+  time = CONFIG.intervalSegons;
   updateDisplay();
 };
 
@@ -145,8 +150,8 @@ function stopApp() {
   startScreen.style.display = "flex";
 
   running = false;
-  time = 30;
-  totalTime = 1800;
+  time = CONFIG.intervalSegons;
+  totalTime = CONFIG.totalMinuts * 60;
 
   updateDisplay();
   messageEl.textContent = "";
