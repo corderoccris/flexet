@@ -27,7 +27,7 @@ const sessionEl = document.getElementById("sessionInfo");
 const timerEl = document.getElementById("timer");
 const messageEl = document.getElementById("message");
 const imageEl = document.getElementById("image");
-const btn = document.getElementById("startBtnScreen"); // ja no fem servir el de l'HTML original
+const btn = document.getElementById("startBtnScreen");
 const resetBtn = document.getElementById("resetBtn");
 
 if ("serviceWorker" in navigator) {
@@ -44,12 +44,12 @@ function updateDisplay() {
 // MISSATGE + COLORS + IMATGE
 function updateMessage() {
   if (isStretch) {
-    messageEl.textContent = "Estirar piernas!";
+    messageEl.textContent = "ESTIRA LAS PIERNAS!";
     appScreen.classList.remove("bend");
     appScreen.classList.add("stretch");
     imageEl.src = "img/flexet-estirat.png";
   } else {
-    messageEl.textContent = "Dobla las piernas!";
+    messageEl.textContent = "DOBLA LAS PIERNAS!";
     appScreen.classList.remove("stretch");
     appScreen.classList.add("bend");
     imageEl.src = "img/flexet-doblat.png";
