@@ -1,55 +1,18 @@
-
-html, body {
-  height: 100%;
-  width: 100%;
+/* ===============================
+   GLOBAL / BASE
+   =============================== */
+body {
   margin: 0;
-  padding: 0;
   font-family: sans-serif;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
   color: white;
-  background: none;
+  user-select: none;
+  transition: background 0.5s ease;
+  overflow: hidden;
 }
 
-.screen {
-  position: fixed;   /* clau! */
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 1;
-}
-
-/* PANTALLA INICIAL rosa */
-#startScreen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffc0cb;
-  height: 100vh;
-  width: 100%;
-  padding: 0;
-}
-
-#startScreen h1 {
-  font-size: 3rem;
-  margin: 20px 0;
-}
-
-#startBtnScreen {
+button {
   font-size: 2rem;
-  padding: 20px 40px;
+  padding: 15px 25px;
   border: none;
   border-radius: 20px;
   background: #ff4081;
@@ -57,134 +20,162 @@ html, body {
   cursor: pointer;
 }
 
-/* PANTALLA APP */
-#appScreen {
-  transition: background 0.8s ease;
-  display: none;
+/* ===============================
+   PANTALLES FULLSCREEN
+   =============================== */
+.screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
-  width: 100vw;
+  justify-content: center;
+  z-index: 1;
   padding: 20px;
-  padding-top: 80px;
-  padding-bottom: 40px;
   box-sizing: border-box;
-  gap: 10px;
+  gap: 20px;
 }
 
+/* ===============================
+   INICIAL
+   =============================== */
+#startScreen {
+  display: flex;
+  background: #f8bbd0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#startScreen img {
+  width: 50vw;
+  max-height: 50vh;
+  object-fit: initial;
+  margin-bottom: 0px;
+}
+
+/* ===============================
+   APP SCREEN
+   =============================== */
+#appScreen {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  gap: 15px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* COLORS PER ESTIRAR / DOBLAR */
+body.stretch {
+  background: linear-gradient(135deg, #fceabb, #f8b500); /* groc suau */
+}
+body.bend {
+  background: linear-gradient(135deg, #4facfe, #00f2fe); /* blau suau */
+}
+
+/* MISSATGE */
 #message {
-  font-size: 2.8rem;
+  font-size: 6vw;
   font-weight: 800;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  line-height: 1.1;
-  max-width: 90%;
-  color: #ffffff;
+  color: white;
   -webkit-text-stroke: 1.5px rgba(0,0,0,0.6);
   text-shadow: 
     2px 2px 6px rgba(0,0,0,0.5),
     0 0 10px rgba(0,0,0,0.3);
+  max-width: 90%;
+  line-height: 1.1;
 }
 
+/* IMATGE */
 #image {
   width: 100%;
-  max-height: 45vh;
+  max-height: 50vh;
   object-fit: contain;
   margin: 10px 0;
-  border-radius: 20px;
 }
 
+/* TIMER */
 #timer {
-  font-size: 5rem;
+  font-size: 10vw;
   font-weight: 900;
-  margin-top: auto;
-  margin-bottom: 10px;
   color: white;
   text-shadow: 
     2px 2px 6px rgba(0,0,0,0.6),
     0 0 10px rgba(0,0,0,0.4);
 }
 
-.pulse {
-  transform: scale(1.2);
-}
-
-#appScreen.stretch {
-  background: linear-gradient(135deg, #fff9c4, #fff176);
-}
-
-.stretch #message {
-  color: #ffffff;
-  -webkit-text-stroke: 2px rgba(0,0,0,0.7);
-}
-
-#appScreen.bend {
-  background: linear-gradient(135deg, #90caf9, #64b5f6);
-}
-
-/* BOTÓ RESET AL CANTÓ SUPERIOR */
+/* BOTÓ REINICIAR */
 #resetBtn {
-  display: none;
   position: absolute;
   top: 15px;
   right: 15px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 10px 15px;
-  border-radius: 15px;
   background: rgba(0,0,0,0.4);
   color: white;
-  cursor: pointer;
+  border-radius: 12px;
   z-index: 10;
-  transition: background 0.2s;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
 }
 
-#resetBtn:hover {
-  background: rgba(0,0,0,0.6);
-}
-
-/* INFORMACIÓ SESSIÓ */
-#sessionInfo {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
-}
-
-/* LOGO PANTALLA INICIAL */
-#startLogo {
-  max-width: 60%;
-  max-height: 40vh;
-  object-fit: contain; /* manté la proporció original */
-  margin-bottom: 20px;
-}
-
-/* PANTALLA FINAL */
+/* ===============================
+   END SCREEN
+   =============================== */
 #endScreen {
-  background: #f8bbd0;
-  color: white;
   display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
-  text-align: center;
+  background: #f8bbd0;
   height: 100vh;
   width: 100vw;
+  gap: 20px;
 }
 
-#endScreen h1 {
-  font-size: 2.5rem;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-}
-
-#endImage {
-  max-width: 70%;
-  max-height: 50vh;
+#endScreen img {
+  width: 100%;
+  max-height: 60vh;
   object-fit: contain;
+}
+
+#endScreen #endMessage {
+  font-size: 15vw;
+  font-weight: 900;
+  color: white;
+  -webkit-text-stroke: 1.5px rgba(0,0,0,0.6);
+  text-shadow: 
+    2px 2px 6px rgba(0,0,0,0.5),
+    0 0 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+   =============================== */
+@media (max-width: 600px) {
+  #message {
+    font-size: 8vw;
+  }
+  #timer {
+    font-size: 12vw;
+  }
+  button {
+    font-size: 1.8rem;
+    padding: 12px 20px;
+  }
+}
+
+.stretch {
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+}
+
+.bend {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
 }
