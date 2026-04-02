@@ -184,7 +184,7 @@ function updateSessionInfo() {
 
   const startTimeStr = start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
 
-  sessionEl.textContent = `Inici: ${startTimeStr} · portes ${minutes} min`;
+  sessionEl.textContent = `Inicio: ${startTimeStr} · llevas ${minutes} min`;
 }
 
 function playCompletionSound() {
