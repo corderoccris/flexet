@@ -1,6 +1,6 @@
 const CONFIG = {
-  intervalSegons: 30,    // Durada de cada interval (per estirar/doblar)
-  totalMinuts: 30        // Durada total de la sessió
+  intervalSegons: 0.5,    // Durada de cada interval (per estirar/doblar)
+  totalMinuts: 0.5        // Durada total de la sessió
 };
 
 let interval = null;
@@ -13,10 +13,13 @@ let startTimestamp = null;
 let lastCatIndex = -1;
 
 const catImages = [
-  "img/Squinting_cat.jpg",
-  "img/Ginger_european_cat.jpg",
-  "img/British_Shorthair_Smiling.jpg",
-  "img/black-cat.jpg"
+  "img/louise.jpeg",
+  "img/thelma.jpg",
+  "img/louise2.png",
+  "img/thelma2.png",
+  "img/louise3.png",
+  "img/thelma3.jpeg",
+  "img/louise4.png"
 ];
 
 const startScreen = document.getElementById("startScreen");
